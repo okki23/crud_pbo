@@ -112,10 +112,12 @@ $crud = new CRUD;
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
    
    <script> 
-
+      //sintaks jquery
       $(document).ready(function () { 
 
+          //inisialisasi datatable
           $('#dt-table').DataTable({
+            //panggil data ke backend
             ajax:"index.php?action=load-data"
           }); 
           
@@ -132,6 +134,8 @@ $crud = new CRUD;
       }); 
 
       function SaveData(){      
+          //ajax
+          //asynchronous javascript and xml
           $.ajax({
             url :"index.php?action=save",
             data :$("#formdata").serialize(),
@@ -175,6 +179,9 @@ $crud = new CRUD;
       
       }
 
+
+      // CRUD 
+      // create read update delete
       function Ubah(id){
         $.get("index.php?action=getdata&id="+id,function(result){ 
           var parsing = JSON.parse(result); 

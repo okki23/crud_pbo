@@ -9,7 +9,9 @@ class CRUD extends Config{
     }
 
     public function LoadData(){
-        $sql = $this->conn->prepare("select * from ".$this->tablename);
+
+        $sql = $this->conn->
+        prepare("select * from ".$this->tablename);
         $sql->execute();
     
         $data = array();  
@@ -47,7 +49,8 @@ class CRUD extends Config{
             ];
 
             if($data['id'] == '' ){
-                $sql = "INSERT INTO siswa (nisn, nama, telp, alamat, tempat_lahir, tanggal_lahir) VALUES (:nisn, :nama, :telp, :alamat, :tempat_lahir, :tanggal_lahir)";
+                $sql = "INSERT INTO siswa (nisn, nama, telp, alamat, tempat_lahir, tanggal_lahir) 
+                VALUES (:nisn, :nama, :telp, :alamat, :tempat_lahir, :tanggal_lahir)";
                 // $this->conn->prepare($sql)->execute($data)->debugDumpParams(); 
                 $binding = $this->conn->prepare($sql);
 				$binding->bindParam(":nisn",$data['nisn']);
@@ -59,7 +62,8 @@ class CRUD extends Config{
 				$binding->execute();
                 echo json_encode(array("message"=>"success","code"=>200));
             }else{
-                $sql="UPDATE siswa SET nisn=:nisn, nama=:nama, telp=:telp, alamat=:alamat, tempat_lahir=:tempat_lahir, tanggal_lahir=:tanggal_lahir WHERE id=:id";
+                $sql="UPDATE siswa SET nisn=:nisn, nama=:nama, telp=:telp, alamat=:alamat, tempat_lahir=:tempat_lahir, tanggal_lahir=:tanggal_lahir 
+                WHERE id=:id";
                 $binding = $this->conn->prepare($sql);
                 $binding->bindParam(":id",$data['id']);
                 $binding->bindParam(":nisn",$data['nisn']);
@@ -103,5 +107,4 @@ class CRUD extends Config{
         echo json_encode($row);
          
     }
-} 
-?>  
+}
